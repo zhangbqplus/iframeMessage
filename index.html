@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div onclick="sendData()">父传子</div>
+    <p id="showId"></p>
+    <iframe id="iframe_id" src="./index2.html"></iframe>
+</body>
+<script src="./iframeMessage.min.js" ></script>
+<script>
+    var iframeId = new iframeMessage("iframe_id");
+    var showId= document.getElementById("showId")
+    iframeId.addEventListener(function(e){
+        if(e.id == "c"){
+            showId.innerHTML=e.msg;
+        }
+    })
+    function sendData(){
+        iframeId.postMessage({
+            id:"f",
+            msg:"父传递给子的数据"
+        })
+    }
+</script>
+</html>
